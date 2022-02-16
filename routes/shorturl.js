@@ -32,7 +32,7 @@ router.post('/', upload.none(), async (req, res, next) => {
     console.log({ isValidUrl });
 
     if (!isValidUrl) {
-      return res.status(400).json({ error: 'invalid url' });
+      return res.status(200).json({ error: 'invalid url' });
     }
 
     // const validDns = await new Promise((resolve, rej) => {
