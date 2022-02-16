@@ -59,12 +59,10 @@ router.post('/', upload.none(), async (req, res, next) => {
 
     const result = await ShortUrl.create({ original_url: url });
 
-    return res
-      .status(200)
-      .json({
-        original_url: result.original_url,
-        short_url: baseUrl + result.short_url,
-      });
+    return res.status(200).json({
+      original_url: result.original_url,
+      short_url: baseUrl + result.short_url,
+    });
   } catch (error) {
     console.log(error);
     next('something went wrong...');
