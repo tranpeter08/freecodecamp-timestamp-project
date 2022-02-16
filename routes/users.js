@@ -6,9 +6,10 @@ const Exercise = require('../models/Exercise');
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await Users.find({}, { _id: 1, username: 1 });
+    const users = await User.find({}, { _id: 1, username: 1 });
     return res.json(users);
   } catch (error) {
+    console.log(error.message);
     next('error...');
   }
 });
