@@ -4,7 +4,7 @@ const { validateDate } = require('../utils/validators');
 router.get('/', (req, res) => {
   const date = new Date();
 
-  const unix = Math.floor(date.getTime() / 1000);
+  const unix = date.getTime();
   const utc = date.toUTCString();
 
   return res.status(200).json({
@@ -22,7 +22,7 @@ router.get('/:date', (req, res) => {
     return res.status(400).send({ error: 'Invalid Date' });
   }
 
-  const unix = Math.floor(dateObj.getTime() / 1000);
+  const unix = dateObj.getTime();
   const utc = dateObj.toUTCString();
 
   res.send({ unix, utc });
