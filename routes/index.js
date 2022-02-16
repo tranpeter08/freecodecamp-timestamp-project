@@ -1,5 +1,8 @@
 const router = require('express').Router();
+const whoamiRouter = require('./whoami');
 const { validateDate } = require('../utils/validators');
+
+router.use('/whoami', whoamiRouter);
 
 router.get('/', (req, res) => {
   const date = new Date();
