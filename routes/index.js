@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const whoamiRouter = require('./whoami');
+const shorturlRouter = require('./shorturl');
 const { validateDate } = require('../utils/validators');
 
+router.use('/shorturl', shorturlRouter);
 router.use('/whoami', whoamiRouter);
 
 router.get('/', (req, res) => {
