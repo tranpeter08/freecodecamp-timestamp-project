@@ -25,7 +25,7 @@ router.post('/', upload.none(), async (req, res, next) => {
     const { url } = req.body;
     console.log({ url });
     const regex =
-      /^(http:\/\/|https:\/\/)(www.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+      /^(http:\/\/|https:\/\/)(www.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/;
 
     const isValidUrl = regex.test(url);
 
@@ -34,7 +34,8 @@ router.post('/', upload.none(), async (req, res, next) => {
     }
 
     const validDns = await new Promise((resolve, rej) => {
-      dns.lookup(url, (err, address) => {
+      const domain = url.split('?')[0];
+      dns.lookup(domain, (err, address) => {
         if (err) {
           resolve(false);
         }
