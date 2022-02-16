@@ -67,7 +67,7 @@ router.post('/:_id/exercises', upload.none(), async (req, res, next) => {
 
     res.json({
       username: existingUser.username,
-      _id: result._id,
+      _id: existingUser._id,
       description: result.description,
       duration: result.duration,
       date: new Date(result.date).toDateString(),
