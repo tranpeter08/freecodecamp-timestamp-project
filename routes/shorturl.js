@@ -35,22 +35,22 @@ router.post('/', upload.none(), async (req, res, next) => {
       return res.status(400).json({ error: 'invalid url' });
     }
 
-    const validDns = await new Promise((resolve, rej) => {
-      const domain = url.split('?')[0];
-      dns.lookup(domain, (err, address) => {
-        if (err) {
-          resolve(false);
-        }
+    // const validDns = await new Promise((resolve, rej) => {
+    //   const domain = url.split('?')[0];
+    //   dns.lookup(domain, (err, address) => {
+    //     if (err) {
+    //       resolve(false);
+    //     }
 
-        resolve(true);
-      });
-    });
+    //     resolve(true);
+    //   });
+    // });
 
-    console.log({ validDns });
+    // console.log({ validDns });
 
-    if (!validDns) {
-      return res.status(400).json({ error: 'invalid url' });
-    }
+    // if (!validDns) {
+    //   return res.status(400).json({ error: 'invalid url' });
+    // }
 
     const existingUrl = await ShortUrl.findOne(
       {
