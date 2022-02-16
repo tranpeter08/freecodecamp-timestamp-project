@@ -7,6 +7,7 @@ const dns = require('dns');
 router.get('/:shorturl', async (req, res) => {
   try {
     const { shorturl } = req.params;
+    console.log({ shorturl });
     const result = await ShortUrl.findOne({ short_url: shorturl });
 
     if (!result) {
@@ -22,6 +23,7 @@ router.get('/:shorturl', async (req, res) => {
 router.post('/', upload.none(), async (req, res, next) => {
   try {
     const { url } = req.body;
+    console.log({ url });
     const regex =
       /^(http:\/\/|https:\/\/)(www.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
 
