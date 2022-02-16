@@ -1,6 +1,18 @@
 const router = require('express').Router();
 const { validateDate } = require('../utils/validators');
 
+router.get('/', (req, res) => {
+  const date = new Date();
+
+  const unix = Math.floor(date.getTime() / 1000);
+  const utc = date.toUTCString();
+
+  return res.status(200).json({
+    unix,
+    utc,
+  });
+});
+
 router.get('/:date', (req, res) => {
   const { date } = req.params;
   const { isValidDate, date: dateObj } = validateDate(date);
