@@ -29,6 +29,8 @@ router.post('/', upload.none(), async (req, res, next) => {
 
     const isValidUrl = regex.test(url);
 
+    console.log({ isValidUrl });
+
     if (!isValidUrl) {
       return res.status(400).json({ error: 'invalid url' });
     }
@@ -43,6 +45,8 @@ router.post('/', upload.none(), async (req, res, next) => {
         resolve(true);
       });
     });
+
+    console.log({ validDns });
 
     if (!validDns) {
       return res.status(400).json({ error: 'invalid url' });
