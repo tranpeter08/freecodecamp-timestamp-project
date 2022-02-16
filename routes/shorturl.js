@@ -63,7 +63,7 @@ router.post('/', upload.none(), async (req, res, next) => {
     if (existingUrl) {
       return res.status(200).json({
         original_url: existingUrl.original_url,
-        short_url: baseUrl + existingUrl.short_url,
+        short_url: existingUrl.short_url,
       });
     }
 
@@ -71,7 +71,7 @@ router.post('/', upload.none(), async (req, res, next) => {
 
     return res.status(200).json({
       original_url: result.original_url,
-      short_url: baseUrl + result.short_url,
+      short_url: result.short_url,
     });
   } catch (error) {
     console.log(error);
