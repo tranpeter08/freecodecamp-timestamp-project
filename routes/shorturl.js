@@ -31,11 +31,19 @@ router.post('/', upload.none(), async (req, res, next) => {
       return res.status(400).json({ error: 'invalid url' });
     }
 
-    dns.lookup(url, (err, address) => {
-      if (err) {
-        return res.status(400).json({ error: 'invalid url' });
-      }
+    const validDns = await new Promise((resolve, rej) => {
+      dns.lookup(url, (err, address) => {
+        if (err) {
+          resolve(false);
+        }
+
+        resolve(true);
+      });
     });
+
+    if (!validDns) {
+      return res.status(400).json({ error: 'invalid url' });
+    }
 
     const existingUrl = await ShortUrl.findOne(
       {
